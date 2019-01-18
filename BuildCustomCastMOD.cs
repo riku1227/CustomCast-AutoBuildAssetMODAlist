@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,10 +22,12 @@ public class BuildCustomCastMOD : MonoBehaviour {
 		String[] outFiles = Directory.GetFiles(outDirectory);
 		foreach (String item in outFiles) {
 			Debug.Log (item);
-			if(item.IndexOf(".manifest") == -1 || item.IndexOf("CustomCastMOD") == -1) {
-				if(item.IndexOf(".alist") == -1) {
-					bundleName = Path.GetFileName(item);
-					Debug.Log (bundleName);
+			if(Path.GetFileName(item).IndexOf("CustomCastMOD") == -1) {
+				if(item.IndexOf(".manifest") == -1) {
+					if(item.IndexOf(".alist") == -1) {
+						bundleName = Path.GetFileName(item);
+						Debug.Log (bundleName);
+					}
 				}
 			}
 		}
